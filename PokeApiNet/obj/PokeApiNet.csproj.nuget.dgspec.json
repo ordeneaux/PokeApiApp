@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\localadmin\\source\\repos\\Stuller\\PokeApiApp\\PokeApiNet\\PokeApiNet.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\localadmin\\source\\repos\\Stuller\\PokeApiApp\\PokeApiNet\\PokeApiNet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\localadmin\\source\\repos\\Stuller\\PokeApiApp\\PokeApiNet\\PokeApiNet.csproj",
+        "projectName": "PokeApiNet",
+        "projectPath": "C:\\Users\\localadmin\\source\\repos\\Stuller\\PokeApiApp\\PokeApiNet\\PokeApiNet.csproj",
+        "packagesPath": "C:\\Users\\localadmin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\localadmin\\source\\repos\\Stuller\\PokeApiApp\\PokeApiNet\\obj\\",
+        "projectStyle": "PackageReference",
+        "crossTargeting": true,
+        "configFilePaths": [
+          "C:\\Users\\localadmin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "Microsoft.CSharp": {
+              "target": "Package",
+              "version": "[4.7.0, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "System.Collections.Immutable": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
