@@ -14849,7 +14849,7 @@ namespace PokeApiApp
         [System.ComponentModel.DataAnnotations.Required]
         public System.Collections.Generic.ICollection<PokemonGameIndex> Game_indices { get; set; } = new System.Collections.ObjectModel.Collection<PokemonGameIndex>();
 
-        [Newtonsoft.Json.JsonProperty("held_items", Required = Newtonsoft.Json.Required.Always)]
+        [Newtonsoft.Json.JsonProperty("held_items", Required = Newtonsoft.Json.Required.Default)]
         [System.ComponentModel.DataAnnotations.Required]
         public Held_items Held_items { get; set; } = new Held_items();
 
