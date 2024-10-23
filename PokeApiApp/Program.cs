@@ -20,26 +20,30 @@ namespace PokeApiApp
             //var pokemons = client.GetAllNamedResourcesAsync<Pokemon>();
             //DataFetcher.
             //var client = new DataFetcher();
-            Dictionary<string, Uri> map = new Dictionary<string, Uri>();
+            Dictionary<string, Uri> pokemonMap = new Dictionary<string, Uri>();
             var httpClient = new HttpClient();
             var pokeClient = new Client(httpClient);
             //var charmander = pokeClient.Pokemon_retrieveAsync("4").Result;
-            var list = pokeClient.Pokemon_listAsync(int.MaxValue, 0, string.Empty).Result;
-            foreach (var pokemon in list.Results.OrderBy(r => r.Name))
+            var pokemonList = pokeClient.Pokemon_listAsync(int.MaxValue, 0, string.Empty).Result;
+            foreach (var pokemon in pokemonList.Results.OrderBy(r => r.Name))
             {
-                map[pokemon.Name] = pokemon.Url;
+                pokemonMap[pokemon.Name] = pokemon.Url;
             }
-            string id = GetValidPokemonIdFromConsole(map);
+            string id = GetValidPokemonIdFromConsole(pokemonMap);
             //NSwag generated client can't deserialize detail response correctly
             //var playerPokemonDetail = pokeClient.Pokemon_retrieveAsync(id).Result;
             PokeApiClient pokeApiClient = new PokeApiNet.PokeApiClient(new HttpClient());
-            var pokemonDetail = pokeApiClient.GetResourceAsync<PokeApiNet.Pokemon>(id).Result;
-            List<PokeApiNet.Type> typeDetailList = new List<PokeApiNet.Type>();
-            foreach (var type in pokemonDetail.Types)
+            var inputPokemon = pokeApiClient.GetResourceAsync<PokeApiNet.Pokemon>(id).Result;
+            List<PokeApiNet.Type> inputPokemonTypes = new List<PokeApiNet.Type>();
+            foreach (var type in inputPokemon.Types)
             {
                 var pokemonType = pokeApiClient.GetResourceAsync<PokeApiNet.Type>(type.Type.Name).Result;
-                typeDetailList.Add(pokemonType);
+                inputPokemonTypes.Add(pokemonType);
             }
+            //get all types for comparison
+            var allTypesResult = pokeClient.Type_listAsync(int.MaxValue,0,string.Empty).Result;
+            List<string> allTypeNames = allTypesResult.Results.OrderBy(t => t.Name).Select(t=> t.Name).ToList();
+
         }
         private static string GetValidPokemonIdFromConsole(Dictionary<string, Uri> map)
         {
