@@ -15,25 +15,19 @@ namespace PokeApiApp
 {
     internal class Program
     {
-        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
         static void Main(string[] args)
         {
             try
             {
-
-
                 Dictionary<string, Uri> pokemonMap = new Dictionary<string, Uri>();
                 var httpClient = new HttpClient();
                 var pokeClient = new Client(httpClient);
-                //var charmander = pokeClient.Pokemon_retrieveAsync("4").Result;
                 var pokemonList = pokeClient.Pokemon_listAsync(int.MaxValue, 0, string.Empty).Result;
                 foreach (var pokemon in pokemonList.Results.OrderBy(r => r.Name))
                 {
                     pokemonMap[pokemon.Name] = pokemon.Url;
                 }
                 string id = GetValidPokemonIdFromConsole(pokemonMap);
-                //NSwag generated client can't deserialize detail response correctly
-                //var playerPokemonDetail = pokeClient.Pokemon_retrieveAsync(id).Result;
                 PokeApiClient pokeApiClient = new PokeApiNet.PokeApiClient(new HttpClient());
                 var inputPokemon = pokeApiClient.GetResourceAsync<PokeApiNet.Pokemon>(id).Result;
                 List<TypeAnalysis> myReturnObject = new List<TypeAnalysis>();
@@ -138,5 +132,9 @@ namespace PokeApiApp
             var urlParts = uri.AbsolutePath.Split('/');
             return urlParts[4];
         }
+
+        //This logger is to hide exception details from the user, instead writing it to a rolling file.  It is configured in app.config.
+        //See https://logging.apache.org/log4net/release/manual/configuration.html for details
+        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
     }
 }
